@@ -1,17 +1,17 @@
 from math import sqrt
-
+#To check no repeatition in every row
 def isrowsafe(board,row,i,N):
     for j in range(N):
         if board[row][j]==i:
             return False
     return True
-    
+    #To check no repeatition in every column
 def iscolsafe(board,col,i,N):
     for j in range(N):
         if board[j][col]==i:
             return False
     return True
-    
+    #To check no repeatition in every box
 def isboxsafe(board,row,col,i,N):
     row_s=row-row%int(sqrt(N))
     col_s=col-col%int(sqrt(N))
@@ -20,12 +20,12 @@ def isboxsafe(board,row,col,i,N):
             if board[k][j]==i:
                 return False
     return True
-    
+    #Check if can place
 def canplace(board,row,col,i,N):
     if isrowsafe(board,row,i,N) and iscolsafe(board,col,i,N) and isboxsafe(board,row,col,i,N):
         return True
     return False
-
+#backtracking
 def suduko_solver(board, N):
     row=-1
     col=-1
@@ -52,7 +52,7 @@ def suduko_solver(board, N):
         board[row][col]=0
         
     return False
-
+    #Main Driver
     board=[]
     M=list(int(i) for i in input().split())
     for i in range(0,len(M),9):
